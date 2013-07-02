@@ -7,7 +7,7 @@ module RSolr::Char
   #   value.gsub(/(\W)/, '\\\\\1')
   # end
   
-  LUCENE_CHAR_RX = /([\+\-\!\(\)\[\]\^\"\~\*\?\:\\]+)/
+  LUCENE_CHAR_RX = /([\+\-\!\(\)\[\]\^\"\~\*\?\:\\])/
   LUCENE_WORD_RX = /(OR|AND|NOT)/
 
   # More specific/lucene escape sequence
