@@ -155,10 +155,10 @@ class RSolr::Client
   # then passes the request/response into +adapt_response+.
   def send_and_receive path, opts
     request_context = build_request path, opts
-    request_context[:retry_503] = 5
     [:open_timeout, :read_timeout, :retry_503, :retry_after_limit].each do |k|
       request_context[k] = @options[k]
     end
+    request_context[:retry_503] = 5
     execute request_context
   end
   
@@ -168,7 +168,7 @@ class RSolr::Client
 
     while retry_503?(request_context, raw_response)
       request_context[:retry_503] -= 1
-      sleep retry_after(raw_response)
+      sleep 0.5
       raw_response = connection.execute self, request_context
     end
 
